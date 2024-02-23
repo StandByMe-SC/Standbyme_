@@ -35,10 +35,6 @@ public class Member implements UserDetails {
     @Column(name = "USER_EMAIL", nullable = false)
     private String email;
 
-    @Column(name = "USER_GENDER")
-    private String gender;
-
-    private String picture;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "USER_ROLE", nullable = false)
@@ -90,18 +86,18 @@ public class Member implements UserDetails {
     }
 
     @Builder
-    private Member(String memberName, Role role, String email, String name, String picture) {
+    private Member(String memberName, Role role, String email, String name) {
         this.memberName = memberName;
         this.role = role;
         this.email = email;
         this.name = name;
+
     }
 
-    public void update(FirebaseToken token) {
+    public void update(FirebaseToken token) { // picture 필드 삭제
         this.memberName = token.getUid();
         this.email = token.getEmail();
         this.name = token.getName();
-        this.picture = token.getPicture();
     }
 
 }

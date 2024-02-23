@@ -26,7 +26,6 @@ public class MemberDetailService implements UserDetailsService {
                 .memberName(firebaseToken.getUid())
                 .email(firebaseToken.getEmail())
                 .name(firebaseToken.getName())
-                .picture(firebaseToken.getPicture())
                 .role(role)
                 .build();
         return memberRepository.save(member);
